@@ -1,0 +1,48 @@
+{
+  "name": "upviral",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm install",
+    "actual:tests": "npx cypress run",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "test": "npm-run-all \"actual:tests -- {@}\" after:tests --continue-on-error --",
+    "after:tests": "node reporter/cucumber-html-reporter.js",
+    "generate-report": "node reporter/cucumber-html-reporter.js",
+    "cy:verify": "cypress verify",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js)\""
+  },
+  "devDependencies": {
+    "cypress": "^6.9.1",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-iframe": "^1.0.1",
+    "cypress-wait-until": "^1.7.2",
+    "cypress-xpath": "^1.6.1",
+    "eslint-plugin-json-format": "2.0.1",
+    "faker": "^4.1.0",
+    "mocha": "^5.2.0",
+    "mochawesome": "^4.1.0",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^4.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "chai": "^4.3.4",
+    "cypress-iframe": "^1.0.1",
+    "iframe": "^1.0.0",
+    "install": "^0.13.0",
+    "moment": "^2.29.1",
+    "multiple-cucumber-html-reporter": "^1.21.4"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/support/step_definitions",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  }
+}
